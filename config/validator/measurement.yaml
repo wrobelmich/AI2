@@ -1,0 +1,49 @@
+App\Entity\Measurement:
+    properties:
+        location:
+            - NotNull:
+                  message: 'Wybierz lokalizację.'
+                  groups: [new, edit]
+        date:
+            - NotNull:
+                  message: 'Podaj datę pomiaru.'
+                  groups: [new, edit]
+            - LessThanOrEqual:
+                  value: today
+                  message: 'Przy tworzeniu data nie może być z przyszłości.'
+                  groups: [new]
+        celsius:
+            - NotBlank:
+                  message: 'Podaj temperaturę.'
+                  groups: [new, edit]
+            - Range:
+                  min: -90
+                  max: 60
+                  notInRangeMessage: 'Temperatura musi być między {{ min }} a {{ max }} °C.'
+                  groups: [new, edit]
+        pressure:
+            - NotBlank:
+                  message: 'Podaj ciśnienie.'
+                  groups: [new, edit]
+            - Range:
+                  min: 800
+                  max: 1100
+                  notInRangeMessage: 'Ciśnienie musi być między {{ min }} a {{ max }} hPa.'
+                  groups: [new, edit]
+        humidity:
+            - Range:
+                  min: 0
+                  max: 100
+                  notInRangeMessage: 'Wilgotność musi być między {{ min }} a {{ max }} %.'
+                  groups: [new, edit]
+        wind_speed:
+            - PositiveOrZero:
+                  message: 'Prędkość wiatru nie może być ujemna.'
+                  groups: [new, edit]
+        precipitation:
+            - PositiveOrZero:
+                  message: 'Opady nie mogą być ujemne.'
+                  groups: [new, edit]
+
+
+

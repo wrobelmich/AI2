@@ -1,0 +1,41 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank:
+                  message: 'Podaj nazwę miasta.'
+                  groups: [new, edit]
+            - Length:
+                  min: 2
+                  minMessage: 'Nazwa miasta (tworzenie) musi mieć min. {{ limit }} znaki.'
+                  groups: [new]
+            - Length:
+                  min: 3
+                  max: 100
+                  minMessage: 'Nazwa miasta (edycja) musi mieć min. {{ limit }} znaki.'
+                  maxMessage: 'Nazwa miasta może mieć max. {{ limit }} znaków.'
+                  groups: [edit]
+        country:
+            - NotBlank:
+                  message: 'Wybierz kraj.'
+                  groups: [new, edit]
+            - Country:
+                  groups: [new, edit]
+        latitude:
+            - NotBlank:
+                  message: 'Podaj szerokość geograficzną.'
+                  groups: [new, edit]
+            - Range:
+                  min: -90
+                  max: 90
+                  notInRangeMessage: 'Szerokość musi być między {{ min }} a {{ max }}.'
+                  groups: [new, edit]
+        longitude:
+            - NotBlank:
+                  message: 'Podaj długość geograficzną.'
+                  groups: [new, edit]
+            - Range:
+                  min: -180
+                  max: 180
+                  notInRangeMessage: 'Długość musi być między {{ min }} a {{ max }}.'
+                  groups: [new, edit]
+
