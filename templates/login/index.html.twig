@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block body %}
+    <h1>Logowanie</h1>
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('app_login') }}" method="post" style="max-width: 24rem">
+        <div class="mb-3">
+            <label class="form-label" for="username">Nazwa użytkownika</label>
+            <input class="form-control" id="username" name="_username" value="{{ last_username }}"
+                   autocomplete="username" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="password">Hasło</label>
+            <input class="form-control" id="password" name="_password" type="password"
+                   autocomplete="current-password" required>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <button class="btn btn-primary" type="submit">Zaloguj się</button>
+    </form>
+{% endblock %}
